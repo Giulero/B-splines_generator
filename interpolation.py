@@ -16,7 +16,7 @@ n = m
 
 s = np.linspace(0, n, n)
 
-#knots = np.zeros(m+2*p)
+# knots = np.zeros(m+2*p)
 knots = np.zeros(n+2*p)
 knots[:(p)]=s[0]
 knots[-(p):]=s[-1]
@@ -38,7 +38,7 @@ B_ = np.zeros((n,n+2))
 for k in range(1, n):
 	s_k = s[k]
 	for i in range(3):
-		B_[k,k+i] = BasisFunc(s_k, k+i, knots, p)  
+		B_[k,k+i] = BasisFunc(s_k, k+i, knots, p)
 
 B = B_[1:-1, 2:-2]
 
@@ -80,6 +80,3 @@ plt.plot(x,y,'k--',label='Control polygon',marker='o',markerfacecolor='red')
 
 plt.savefig('bspline_interp.pdf')
 plt.show()
-
-
-
