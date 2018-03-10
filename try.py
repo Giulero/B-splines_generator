@@ -1,13 +1,5 @@
 from bspline import *
 
-t=1;
-
-#ctr =np.array( [(3 , 1), (2.5, 4), (0, 1), (-2.5, 4), (-3, 0), (-2.5, -4), (0, -1), (2.5, -4), (3 , -1), (1, 1)]).transpose()
-
-#ctr = np.array([(1,2), (2,3), (3, -3), (4,4), (5,5), (6,-5), (7,-6), (8,-5)]).transpose()
-
-#ctr = np.array([(1,2), (2,3), (3, -3), (4,4), (5,5), (6,-5), (7,-6), (8,-5), (8, -3), (9, -4), (10 , 1)]).transpose()
-
 ctr = np.array([(1.925000,-1.250000),
 (1.800000,-1.175000),
 (1.700000,-1.099999),
@@ -61,7 +53,7 @@ p = 3; #polygrade
 
 s = np.linspace(0, m, m+p+1-2*p)
 
-
+# Knot vector
 knots = np.zeros(m+p+1)
 knots[:(p+1)]=s[0]
 knots[-(p+1):]=s[-1]
@@ -69,10 +61,9 @@ knots[(p+1):-(p+1)]= s[1:-1]
 
 u3=np.linspace(0,m,(max(m*2,70)))
 
+# Vectors used to evaluate the b-splines
 out = np.zeros((2, len(u3)))
 out_der = np.zeros((2, len(u3)))
-
-
 
 for i in range(len(u3)):
 	for j in (range(m)):
@@ -86,8 +77,6 @@ for i in range(len(u3)):
 
 print('out_der', out_der)
 
-
-
 plt.plot(out[0],out[1],'b',linewidth=2.0,label='B-spline curve')
 plt.plot(x,y,'k--',label='Control polygon',marker='o',markerfacecolor='red')
 
@@ -99,4 +88,3 @@ plt.show()
 plt.plot(out_der[1],'b',linewidth=2.0,label='B-spline curve')
 plt.savefig('v_y.pdf')
 plt.show()
-
